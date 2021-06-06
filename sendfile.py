@@ -2,7 +2,8 @@ import os
 import time
 
 myPath = "/root/mydisk/chia-blockchain/dest"
-
+myBucket = "ati_project1" #enter your gcloud bucket name here
+network = "myremote" #enter your rclone network name here
 
 def checklist():
     mylist = os.listdir(myPath)
@@ -14,7 +15,7 @@ def checklist():
 
 
 def send():
-    zaman = time.ctime()
+    now = time.ctime()
     mylist = os.listdir(myPath)
     valid = []
     for file in mylist:
@@ -26,15 +27,15 @@ def send():
     print(valid)
     time.sleep(2)
     os.system(
-        "rclone move /root/mydisk/chia-blockchain/dest/plot-* myremote:ati_project1 -P"
+        "rclone move /root/mydisk/chia-blockchain/dest/plot-* "+network+":"+myBucket+" -P"
     )
     os.system(
-        "echo *** Sending file operation started *** "+zaman
+        "echo *** Sending file operation started *** "+now
     )
 
 
 while True:
-    zaman = time.ctime()
+    now = time.ctime()
     if checklist():
         send()
         while True:
@@ -45,7 +46,7 @@ while True:
                 time.sleep(60)
             else:
                 os.system(
-                    "echo *** Sending file operation finished *** "+zaman
+                    "echo *** Sending file operation finished *** "+now
                 )
                 time.sleep(10)
                 break
