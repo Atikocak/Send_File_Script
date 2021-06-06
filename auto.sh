@@ -1,10 +1,8 @@
 #! /bin/sh
 echo "Reading Bash File"
 sleep 3
-if pgrep -f "python sendfile.py" &>/dev/null; 
+if ! ps ax | grep -q "[s]endfile.py"; 
 then
-    echo "Send File Script Started Successfully!"
-    exit
-else
     python sendfile.py
+    echo "Send File Script Started Successfully!"
 fi
