@@ -1,7 +1,7 @@
 import os
 import time
 
-myPath = "/root/mydisk/chia-blockchain/dest"
+myPath = "/root/mydisk/chia-blockchain/dest" #enter your destination path here
 myBucket = "ati_project1" #enter your gcloud bucket name here
 network = "myremote" #enter your rclone network name here
 
