@@ -27,7 +27,7 @@ def send():
     print(valid)
     time.sleep(2)
     os.system(
-        "rclone move /root/mydisk/chia-blockchain/dest/plot-* "+network+":"+myBucket+" -P"
+        "rclone move "+myPath+"/plot-* "+network+":"+myBucket+" -P"
     )
     os.system(
         "echo *** Sending file operation started *** "+now
