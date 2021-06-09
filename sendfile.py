@@ -2,8 +2,8 @@ import os
 import time
 
 myPath = "/root/mydisk/chia-blockchain/dest" #enter your destination path here
-myBucket = "ati_project1" #enter your gcloud bucket name here
-network = "myremote" #enter your rclone network name here
+myBucket = "myproject1" #enter your gcloud bucket name here
+network = "wasabi" #enter your rclone network name here
 
 def checklist():
     mylist = os.listdir(myPath)
