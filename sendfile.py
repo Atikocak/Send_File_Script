@@ -28,13 +28,13 @@ def send():
     print(valid)
     time.sleep(2)
     for x in range(1):
-        os.system(
-            "rclone move "+myPath+"/" +
-            valid[x]+" "+network+":"+myBucket+" -P"
-        )
         currentFile = valid[x]
         os.system(
             "echo *** Sending file operation started for current file: "+currentFile+" *** "+now
+        )
+        os.system(
+            "rclone move "+myPath+"/" +
+            valid[x]+" "+network+":"+myBucket+" -P"
         )
         return(currentFile)
 
