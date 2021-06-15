@@ -1,9 +1,10 @@
 import os
 import time
 
-myPath = "/root/mydisk/chia-blockchain/dest" #enter your destination path here
-myBucket = "myproject1" #enter your gcloud bucket name here
-network = "wasabi" #enter your rclone network name here
+myPath = "/root/mydisk/chia-blockchain/dest"  # enter your destination path here
+myBucket = "myproject1"  # enter your gcloud bucket name here
+network = "wasabi"  # enter your rclone network name here
+
 
 def checklist():
     mylist = os.listdir(myPath)
@@ -26,20 +27,24 @@ def send():
     )
     print(valid)
     time.sleep(2)
-    os.system(
-        "rclone move "+myPath+"/plot-* "+network+":"+myBucket+" -P"
-    )
-    os.system(
-        "echo *** Sending file operation started *** "+now
-    )
+    for x in range(1):
+        os.system(
+            "rclone move "+myPath+"/" +
+            valid[x]+" "+network+":"+myBucket+" -P"
+        )
+        currentFile = valid[x]
+        os.system(
+            "echo *** Sending file operation started for current file: "+currentFile+" *** "+now
+        )
+        return(currentFile)
 
 
 while True:
     now = time.ctime()
     if checklist():
-        send()
+        currentFile = send()
         while True:
-            if checklist():
+            if currentFile in checklist():
                 os.system(
                     "echo File sending operation is still in progress..."
                 )
